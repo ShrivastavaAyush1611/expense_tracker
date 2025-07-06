@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Expense Tracker
+
+A simple expense tracking application to monitor income and expenses.
+
+<img width="570" alt="Untitled 2" src="https://github.com/user-attachments/assets/98b0c8b4-caea-4492-a787-e379e2869c17" /> <img width="561" alt="Untitled 3" src="https://github.com/user-attachments/assets/ae139f54-34e7-45d2-8c60-c35cf0dd851d" />
+
+
+
+## 🚀 Features
+
+✅ Add, edit, and delete transactions  
+✅ Set monthly budgets by category  
+✅ Visualize expenses with bar charts and pie charts  
+✅ View real-time insights of budget vs actual spending  
+✅ Fully responsive and clean UI using Tailwind CSS  
+✅ Minimalistic and user-friendly dashboard layout  
+✅ Backend powered by MongoDB & Mongoose  
+✅ API Routes implemented with Next.js App Router 
+
+## 📦 Tech Stack
+
+- **Frontend:** Next.js 14, React, Tailwind CSS, Recharts  
+- **Backend:** Next.js API Routes, MongoDB, Mongoose  
+- **Other Libraries:** react-hot-toast (notifications), Lucide Icons  
+- **Deployment:** Vercel  
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v18 or later)
+- MongoDB Atlas account or local MongoDB
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/expense-tracker.git
+   cd expense-tracker
+2. Install dependencies
+   ```bash
+   npm install
+3. Configure Environment Variables
+   ```bash
+   MONGODB_URI=<your-mongodb-connection-string>
+4. Run the development server
+   ```bash
+     npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🌐 Live Demo
+🔗 https://expense-tracker-lilac-seven-16.vercel.app/
