@@ -120,3 +120,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+/* Fix for transaction table */
+[data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* Performance tweaks */
+.chart, .transaction-item {
+  will-change: transform, opacity;
+}

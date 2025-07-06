@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from './ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 
@@ -22,27 +22,28 @@ export default function TransactionList({ transactions, onDelete, onUpdate }) {
     setEditForm({ ...editForm, [e.target.name]: e.target.value });
   };
 
-  const handleUpdate = async (id) => {
-    try {
-      const response = await fetch(`/api/transactions?id=₹{id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...editForm,
-          amount: parseFloat(editForm.amount)
-        })
-      });
-      const data = await response.json();
-      onUpdate(data);
-      setEditingId(null);
-    } catch (error) {
-      console.error('Failed to update transaction', error);
-    }
-  };
+const handleUpdate = async (id) => {
+  try {
+    const response = await fetch(`/api/transactions?id=${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...editForm,
+        amount: parseFloat(editForm.amount)
+      })
+    });
+    const data = await response.json();
+    onUpdate();  
+    setEditingId(null);
+  } catch (error) {
+    console.error('Failed to update transaction', error);
+  }
+};
 
   return (
     <div className="border rounded-lg overflow-hidden">
       <Table>
+               {/* Table Headings */}
         <TableHeader>
           <TableRow>
             <TableHead>Date</TableHead>
@@ -53,11 +54,19 @@ export default function TransactionList({ transactions, onDelete, onUpdate }) {
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
+                  
+               {/* Table Body - Loops over each transaction */}
+                  
         <TableBody>
           {transactions.map((transaction) => (
             <TableRow key={transaction._id}>
+
+                     {/* Display Date */}
+
               <TableCell>{new Date(transaction.date).toLocaleDateString()}</TableCell>
               
+                    {/* Description - editable if in edit mode */}
+
               <TableCell>
                 {editingId === transaction._id ? (
                   <input
@@ -70,6 +79,8 @@ export default function TransactionList({ transactions, onDelete, onUpdate }) {
                   transaction.description
                 )}
               </TableCell>
+
+              {/* Category - editable dropdown if in edit mode */}
               
               <TableCell>
                 {editingId === transaction._id ? (
@@ -90,6 +101,8 @@ export default function TransactionList({ transactions, onDelete, onUpdate }) {
                 )}
               </TableCell>
               
+                {/* Type - income/expense dropdown if in edit mode */}
+
               <TableCell>
                 {editingId === transaction._id ? (
                   <select
@@ -106,6 +119,8 @@ export default function TransactionList({ transactions, onDelete, onUpdate }) {
                 )}
               </TableCell>
               
+                   {/* Amount - editable if in edit mode */}
+               
               <TableCell>
                 {editingId === transaction._id ? (
                   <input
@@ -122,6 +137,8 @@ export default function TransactionList({ transactions, onDelete, onUpdate }) {
                 )}
               </TableCell>
               
+                    {/* Action Buttons */}
+
               <TableCell className="space-x-2">
                 {editingId === transaction._id ? (
                   <>

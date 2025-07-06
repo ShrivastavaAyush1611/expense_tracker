@@ -1,5 +1,5 @@
 'use client';
-
+import { useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function MonthlyChart({ transactions }) {
@@ -15,6 +15,8 @@ export default function MonthlyChart({ transactions }) {
 
     return Object.entries(monthlyData).map(([name, amount]) => ({ name, amount }));
   };
+
+
 
   const data = processData();
 

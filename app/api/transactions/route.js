@@ -18,15 +18,21 @@ export async function DELETE(request) {
   await dbConnect();
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
+
+  if (!id) {
+    return new Response(JSON.stringify({ message: 'Transaction ID is required' }), { status: 400 });
+  }
+
   await Transaction.findByIdAndDelete(id);
-  return Response.json({ message: 'Transaction deleted' });
+  return new Response(JSON.stringify({ message: 'Transaction deleted' }), { status: 200 });
 }
+
+
 export async function PUT(request) {
   await dbConnect();
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
   const body = await request.json();
-  
   try {
     const updatedTransaction = await Transaction.findByIdAndUpdate(id, body, { new: true });
     return Response.json(updatedTransaction);
@@ -34,3 +40,4 @@ export async function PUT(request) {
     return Response.json({ error: 'Failed to update transaction' }, { status: 400 });
   }
 }
+
